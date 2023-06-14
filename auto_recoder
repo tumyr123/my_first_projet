@@ -1,0 +1,19 @@
+import re
+file_alt = open('txt\proton.xml')
+file_new = open('txt\proto_beta.xml','w')
+
+
+def search_number(line):
+    for i in range(len(line)):
+        if line[i] == ">":
+            number = line[i + 1]
+            return number
+# int(search_number(str))
+
+for line in file_alt:
+    print(line)
+    result = re.search(r"<PopulationCount>", line)
+    if result != None:
+        change = search_number(line)
+        line = line.replace(change,'1')
+    file_new.write(line)
